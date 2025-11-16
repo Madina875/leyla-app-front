@@ -16,7 +16,7 @@ const HoverModal: React.FC<HoverModalProps> = ({ open, title, onClose }) => {
         className="absolute inset-0 bg-black/70"
       ></div>
 
-      <div className="relative w-full h-[50vh] bg-white shadow-lg animate-fade-slide-slow">
+      <div className="relative w-full bg-white shadow-lg animate-fade-in-top">
         <div className="p-6">
           <h2 className="text-xl font-bold mb-4">{title}</h2>
           <p>Dynamic modal based on menu selection</p>

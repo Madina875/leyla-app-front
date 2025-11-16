@@ -1,11 +1,11 @@
 @import "tailwindcss";
-
+/* 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
+} */
 
 body {
   background: var(--background);
@@ -28,17 +28,18 @@ body {
   padding: 18px;
 }
 
-@keyframes fadeSlideSlow {
+/* header */
+@keyframes fadeInTop {
   from {
-    opacity: 0;
-    transform: translateY(30px);
+    opacity: 1;
+    transform: translateY(-12px); /* start above */
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0); /* final position */
   }
 }
 
-.animate-fade-slide-slow {
-  animation: fadeSlideSlow 0.7s ease-out forwards;
+.animate-fade-in-top {
+  animation: fadeInTop 0.5s ease-out forwards; /* adjust duration if needed */
 }
