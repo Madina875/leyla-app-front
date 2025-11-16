@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HoverModal from "./HoverModal";
 import Link from "next/link";
 
@@ -9,6 +9,13 @@ const menuItems = ["Category", "Stores", "Products", "Accessories", "IT"];
 const DynamicMenu = () => {
   const [activeItem, setActiveItem] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (activeItem) {
+      localStorage.setItem("modalOpen", "true");
+    } else {
+      localStorage.setItem("modalOpen", "false");
+    }
+  }, [activeItem]);
   return (
     <>
       {menuItems.map((item) => (
@@ -18,14 +25,19 @@ const DynamicMenu = () => {
           onMouseEnter={() => setActiveItem(item)}
           onMouseLeave={() => setActiveItem(null)}
         >
-          <span className="cursor-pointer w-full inline-block transition-colors hover:text-red-500">
+          <span
+            className={`cursor-pointer w-full inline-block transition-colors hover:text-red-500 ${
+              activeItem === item
+                ? "text-red-500 underline underline-offset-15"
+                : ""
+            }`}
+          >
             {item}
           </span>
 
           <HoverModal
             open={activeItem === item}
             onClose={() => setActiveItem(null)}
-            title={item}
           />
         </li>
       ))}

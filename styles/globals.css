@@ -16,8 +16,10 @@ body {
 .container {
   margin-left: auto;
   margin-right: auto;
-  max-width: 1400px;
+  max-width: 1500px;
   max-height: 100%;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .custom-popover .ant-popover-inner {
@@ -32,7 +34,7 @@ body {
 @keyframes fadeInTop {
   from {
     opacity: 1;
-    transform: translateY(-12px); /* start above */
+    transform: translateY(-10px); /* start above */
   }
   to {
     opacity: 1;

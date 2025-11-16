@@ -48,28 +48,25 @@ const SearchButton = () => {
         className="flex items-center border gap-2 px-3 py-1 rounded-full w-42 cursor-pointer"
       >
         <IoIosSearch className="size-4.5" />
-        <input
-          type="text"
-          placeholder="Search"
-          className="w-full text-start h-ful"
-        />
+        <button className="w-full text-start h-full focus:outline-0">
+          Search
+        </button>
       </div>
 
       <Modal
         title={
           <div
-            className="modal-draggable-title"
-            style={{ width: "100%", padding: "12px", cursor: "move" }}
+            className="modal-draggable-title flex bg-purple-50 py-50.5 px-1 rounded-2xl"
+            style={{ width: "100%", cursor: "move" }}
             onFocus={() => {}}
             onBlur={() => {}}
-          >
-            search items
-          </div> //text
+          ></div> //text
         }
         open={open}
         onOk={handleOk}
         onCancel={handleCancel}
         footer={null}
+        closable={false}
         maskClosable={false}
         transitionName=""
         maskTransitionName=""
@@ -120,28 +117,79 @@ const SearchButton = () => {
                     {element.props.title}
                   </div>
                 )}
-                <div style={{ padding: "16px" }}>
-                  <input
-                    ref={inputRef}
-                    type="text"
-                    placeholder="Search inside modal..."
-                    className="w-full border px-3 py-2 rounded"
-                  />
-                  {element.props.children}
+                <div className="" style={{ padding: "16px" }}>
+                  <div className="flex w-full gap-3 items-center">
+                    {/* Search Input */}
+                    <div className="flex-1 relative">
+                      <input
+                        ref={inputRef}
+                        type="text"
+                        placeholder="Search products, stores..."
+                        className="w-full py-2.5 pl-4 pr-12 rounded-xl border border-gray-300 bg-gray-50 text-gray-800 text-base placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-50 focus:border-purple-100 transition"
+                      />
+                      <IoIosSearch className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg" />
+                    </div>
+
+                    {/* Close Button */}
+                    <button
+                      onClick={handleCancel}
+                      className="flex items-center text-[25px] justify-center w-10 h-10 rounded-full bg-purple-50 text-purple-700 hover:bg-purple-100 hover:text-purple-900 shadow-sm transition-all duration-300 active:scale-95"
+                    >
+                      ×
+                    </button>
+                  </div>
+
+                  <div className="h-[50vh] size-full flex mt-10">
+                    {element.props.children}
+                  </div>
                 </div>
               </div>
             </Draggable>
           );
         }}
       >
-        {/* <p>
-          Just don&apos;t learn physics at school and your life will be full of
-          magic and miracles.
-        </p>
-        <p>
-          Day before yesterday I saw a rabbit, and yesterday a deer, and today,
-          you.
-        </p> */}
+        <div className="size-10 h-full w-360 gap-5 border-gray-400 flex">
+          <div className="size-101 w-140 p-5 flex flex-col gap-5 bg-white">
+            <p className="text-2xl font-light font-sans italic text-black/25">
+              Recent popular search...
+            </p>
+            <ul className="text-[18px] font-normal text-gray-700">
+              <li>Store N21</li>
+              <li>iPhone 16 Pro Max</li>
+              <li>Smart Watch</li>
+            </ul>
+          </div>
+          <div className="grid gap-6 w-full p-5 grid-cols-4">
+            {Array(4)
+              .fill(0)
+              .map((_, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col"
+                >
+                  {/* Main Image */}
+                  <div className="w-full h-[270px] overflow-hidden rounded-t-lg">
+                    <img
+                      src={`https://picsum.photos/300/300?random=${idx}`}
+                      alt={`Product ${idx + 1}`}
+                      className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+
+                  {/* Product Info */}
+                  <div className="p-2 flex flex-col items-start w-full">
+                    <p className="font-sans text-[20px] font-light text-gray-800 line-clamp-1">
+                      Product Name {idx + 1}
+                    </p>
+
+                    <strong className="text-[20px] font-bold text-black mt-1">
+                      $1222
+                    </strong>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
       </Modal>
     </>
   );
